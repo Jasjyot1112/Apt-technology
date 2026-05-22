@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Order Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Load Socket.IO client -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1>Order Dashboard</h1>
+        <div class="status-indicator">
+          <span class="dot" id="connection-dot"></span>
+          <span id="connection-status">Connecting...</span>
+        </div>
+      </div>
+      <p class="subtitle">Live database changes via PostgreSQL LISTEN/NOTIFY</p>
+    </header>
+
+    <div class="controls">
+      <button id="btn-create-order" class="btn primary">Mock New Order</button>
+      <div id="notification-container" class="notification-container"></div>
+    </div>
+
+    <div class="table-container">
+      <table id="orders-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Status</th>
+            <th>Last Updated</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="orders-body">
+          <!-- Rows will be injected by app.js -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Toast Notification Template -->
+  <template id="toast-template">
+    <div class="toast">
+      <div class="toast-icon"></div>
+      <div class="toast-content">
+        <h4 class="toast-title"></h4>
+        <p class="toast-message"></p>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
